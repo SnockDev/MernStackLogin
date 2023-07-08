@@ -1,9 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
-import Jwt from "jsonwebtoken";
 import { signed } from "../libs/jwt.js";
-
-const secret = process.env.SECRET;
 
 export const register = async (req, res) => {
   try {
@@ -21,7 +18,13 @@ export const register = async (req, res) => {
 
     const token = await signed({ id: userSaved._id });
 
-    res.status(201).cookie("token", token).json({ message: "user created su" });
+    res.status(201).cookie("token", token).json({
+      _id:userSaved._id,
+      username:userSaved.username,
+      email:userSaved.email,
+      createdAt:userSaved.createdAt,
+      updatedAt:userSaved.updatedAt
+    });
 
   } catch (err) {
     res.status(400).send("error");
