@@ -51,6 +51,7 @@ export const login = async (req, res) => {
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
     });
+    console.log(req.user);
   } catch (err) {
     res.status(400).send("error");
     console.log(err);
