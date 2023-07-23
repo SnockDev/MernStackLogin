@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-const secret = process.env.SECRET;
+const secret = process.env.secret;
 
 export function signed(payload) {
   return new Promise((resolve, reject) => {
